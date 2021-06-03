@@ -1,10 +1,12 @@
 import React from 'react';
 
-import { useSelector } from "react-redux";
+import {connect} from 'react-redux'
+import {selectedProducts} from '../redux/actions/productAction'
+import { useDispatch, useSelector } from "react-redux";
 
 
-
-const MainPageCards = () => {
+const MainPageCards = (onCreatePressed) => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.products);
   const renderList = products.map((product) => {
     const { id, details, name } = product;
@@ -21,7 +23,11 @@ const MainPageCards = () => {
                 <div className="content">
                   <div className="header">${details.price}</div>
                   <div className="meta price"> {details.type}</div>
-                  <button className="meta">Add to cart</button>
+                  <button className="meta"
+                  onClick ={() =>{
+                    dispatch(selectedProducts(product))
+                  }}
+                  >Add to cart</button>
                 </div>
               </div>
           </div>
@@ -31,5 +37,7 @@ const MainPageCards = () => {
   });
   return <>{renderList}</>;
 };
+
+
 
 export default MainPageCards;
