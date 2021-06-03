@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../redux/actions/productAction";
-import MainPageCards from "./MainPageCards";
+import MainPageCards from "./MainPagecards";
 
 const ProductPage = () => {
   const products = useSelector((state) => state.allProducts.products);
